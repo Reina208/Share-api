@@ -49,9 +49,9 @@ class SharesController extends Controller
     public function show(Share $share)
     {
         $item = Share::where('id', $share->id)->first();
-        $like = DB::tablse('likes')->where('share_id', $share->id)->get();
+        $like = DB::table('likes')->where('share_id', $share->id)->get();
         $user_id = $item->user_id;
-        $user = DB::table('users')->where('share_id', $share->id)->get();
+        $user = DB::table('users')->where('id', (int)$user_id)->first();
         $comment = DB::table('comments')->where('share_id' , $share->id)->get();
         $comment_data = array();
         if (empty($comment->toArray())) {
